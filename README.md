@@ -11,6 +11,9 @@ In this app we can verify the pan number is valid or not. If it is correct it wi
 ## Mobile preview
 ![Design preview ](./src/assets/Mobile%20preview.png)
 
+## error 
+![Design preview ](./src/assets/error%20screen.png)
+
 ##built with 
 - React
 - SASS
