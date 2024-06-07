@@ -1,0 +1,190 @@
+@import './globals';
+.app{
+    max-width: 700px;
+    width: 100%;
+    margin-inline:auto;
+    margin-top: 4rem;
+}
+%boxShadow{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+%growAnimation{
+    animation: grow 0.5s ease-in-out;
+}
+%img{
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    
+}
+@keyframes grow {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+%textAnimation {
+    animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+    -webkit-animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both; 
+}
+@mixin fd($direction,$alignItems){
+    display: flex;
+    gap:1rem;
+    align-items: $alignItems;
+    flex-direction: $direction;
+}
+header{
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 0.3rem;
+    align-items: center;
+    img{
+        @extend %img;
+        grid-row: span 2;
+      
+        @extend %growAnimation;
+        @media (max-width:600px){
+            grid-row: 2/3;
+            grid-column: 1/2;
+
+        }
+    }
+    h1{
+        font-size: 1.5rem;
+        @media (max-width:600px){
+            grid-row: 1/2;
+            grid-column: span 2;
+        }  
+        @extend %textAnimation;
+    }
+    p{
+        color:#747474;
+        @extend %textAnimation;
+    }
+
+}
+
+@keyframes text-clip {
+    from {
+      clip-path: polygon(0% 0%, 0 100%, 0 100%, 0% 0%); }
+    to {
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0%); } 
+}
+main{
+    margin-top: 2rem;
+    @include fd(row,center);
+    padding: 1rem;
+    @media (max-width:600px) {
+        @include fd(column,start);
+    }
+    .left{
+        max-width: 360px;
+        @extend %boxShadow;
+        width:100%;
+        flex: 0.5;
+        background-image: linear-gradient(36deg,#c59bb1,#cb9cb5, #bec5d7,#a7c7de,#b2dbf1);
+        border-radius: 10px;
+        padding: 1.4rem;
+        @include fd(column,space-between);
+        @extend %growAnimation;
+        color: rgb(87, 82, 82);
+        
+        span{
+            color: black;
+            font-weight: 500;
+        }
+        @media (max-width:600px) {
+            align-self: center;
+        }
+        .card__header{
+            display: flex;
+           align-items: center;
+        
+            img{
+                @extend %img;
+                flex: 1;
+            }
+            h2{
+                font-size: 1rem;
+                flex: 1;
+            }
+        }
+        
+    }
+    .right{
+        flex: 0.5;
+        width: 100%;
+        @media (max-width:600px) {
+          flex: 1;
+          margin-top: 2rem;
+        }
+    
+    }
+   
+}
+
+.form{
+    @extend %growAnimation;
+    @include fd(column,'inherit');
+    &__control{
+        position: relative;
+        input{
+            padding: 0.78rem 1rem;
+            
+            width: 100%;
+            font-size: 1.1rem;
+            border-width: 1px;
+            border-color:#CDCDCD; 
+            outline: none;
+            border-radius: 10px;
+            background-color: white;
+           &:focus{
+                border-color: #4091f0;
+           }
+           &:not(:placeholder-shown){
+             border-color: #4091f0;
+           }
+        }
+        label{
+            position: absolute;
+            top: 30%;
+            left: 5%;
+            transition:transform 0.3s;
+            background-color: white;
+            padding: 0 0.5rem;
+        }
+        input:focus + label,
+        input:not(:placeholder-shown) + label{
+            transform: translateY(-25px);
+            color: #4091f0;
+            font-size: 0.8rem;
+        }
+    }
+   span{
+    color:#CDCDCD;
+    align-self: flex-end;
+   }
+   button{
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 300ms;
+    @extend %boxShadow;
+  
+    &:disabled{
+      cursor: not-allowed;  
+    }
+    &:hover{
+        opacity: 0.6;
+    }
+   }
+}
+
+.error{
+    color:red !important;
+}
