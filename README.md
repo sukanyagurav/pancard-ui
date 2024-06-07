@@ -14,7 +14,7 @@ In this app we can verify the pan number is valid or not. If it is correct it wi
 ## error 
 ![Design preview ](./src/assets/error%20screen.png)
 
-##built with 
+## Built with 
 - React
 - SASS
 - Animation

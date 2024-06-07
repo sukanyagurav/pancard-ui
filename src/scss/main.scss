@@ -1,10 +1,5 @@
 @import './globals';
-.app{
-    max-width: 700px;
-    width: 100%;
-    margin-inline:auto;
-    margin-top: 4rem;
-}
+//common  variables
 %boxShadow{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -17,23 +12,26 @@
     object-fit: contain;
     
 }
-@keyframes grow {
-    0%{
-        transform: scale(0);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
+
 %textAnimation {
     animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
     -webkit-animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both; 
 }
+
+// mixin
 @mixin fd($direction,$alignItems){
     display: flex;
     gap:1rem;
     align-items: $alignItems;
     flex-direction: $direction;
+}
+
+// styles
+.app{
+    max-width: 700px;
+    width: 100%;
+    margin-inline:auto;
+    margin-top: 4rem;
 }
 header{
     padding: 1rem;
@@ -67,12 +65,7 @@ header{
 
 }
 
-@keyframes text-clip {
-    from {
-      clip-path: polygon(0% 0%, 0 100%, 0 100%, 0% 0%); }
-    to {
-      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0%); } 
-}
+
 main{
     margin-top: 2rem;
     @include fd(row,center);
@@ -187,4 +180,20 @@ main{
 
 .error{
     color:red !important;
+}
+// animation
+
+@keyframes text-clip {
+    from {
+      clip-path: polygon(0% 0%, 0 100%, 0 100%, 0% 0%); }
+    to {
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0%); } 
+}
+@keyframes grow {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
